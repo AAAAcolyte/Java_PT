@@ -17,16 +17,27 @@ public class Route {
 
   public void add(Coordinate place) {
     // TODO: Part III, a.
+    stops.add(place);
   }
 
   public int totalLength() {
     // TODO: Part III, b.
-    return 0;
+    int length = 0;
+    for(int i = 0; i < stops.size() - 1; i++){
+      length += stops.get(i).distanceTo(stops.get(i+1));
+    }
+    return length;
   }
 
   public char[][] getAnnotatedMap() {
     // TODO: Part V.
-    return null;
+    char[][] annotatedMap = map.toCharMap();
+    Coordinate thisStop;
+    for(int i = 0; i < stops.size(); i++){
+      thisStop = stops.get(i);
+      annotatedMap[thisStop.getX()][thisStop.getY()] = (char)(i+'0');
+    }
+    return annotatedMap;
   }
 
   public void printAnnotatedMap() {
